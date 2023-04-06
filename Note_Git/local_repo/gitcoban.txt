@@ -1,0 +1,31 @@
+I. Git Basic
+1. repo quản lí lịc sử:
+ - ghi lịch sử của direc and file
+ - Có 2 loại repo:
+    + local repo: repo trên máy mình
+    + remote repo: repo từ xa
+    Note: cần mọi người clone về thì đẩy lên remote repo, Muốn tạo
+        local repo:
+            + new repo
+            + copy remote repo
+2.Commit sẽ ghi lại thay đổi:
+ - Nỗi lần commit sẽ ghi lại thay đổi do mình hay người khác thay đổi
+  Tip commit:
+    + Dòng thứ 1: Tóm tắt nội dung thay đổi trong commit
+    + Dòng thứ 2: Dòng trống
+    + Dòng thứ 3 trở đi: Lý do đã thay đổi
+3. Work tree and index:
+ - Index: nơi để chuẩn bị cho commmit lên
+ - Work tree: direc dưới sự quản lí của git
+ - Trên Git, khi đã thực hiện commit thì trạng thái sẽ không
+ được ghi trực tiếp trong repository từ working tree, mà sẽ
+ ghi trạng thái đã được thiết lập của index được xây dựng ở
+ giữa đó. Vì thế, để ghi lại trạng thái của file bằng commit
+ thì trước hết cần đăng ký file trong index.
+    Sơ đồ:
+        repo <- index <- working tree
+        html      html      html
+        css                 css
+        k thể trạng thái css khi chưa đăng kí vào index
+
+

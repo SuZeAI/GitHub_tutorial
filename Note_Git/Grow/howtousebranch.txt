@@ -1,0 +1,58 @@
+USE BRANCH
+1. Chuẩn bị trước
+2. Tạo branch
+    syntax: git branch <namebranch>: yajp branch
+    + git branch : để xem nhánh
+3. Chuyển đỏi branch
+    syntax: git checkout <namebranch>: chuyển nhánh
+    Note: 
+        git checkout -b <namebranch>: khi thêm - b vào thì có thể vừa tạo và 
+            chuyển branch luôn
+4. Merge branch
+    syntax: git merge <commit> : hợp thêm commit
+            git merge <namebranch>: hợp vào branch
+5. Xóa Branch
+    syntax: git branch -d <namebranch>: xóa branch
+6. Làm việc song song   
+    + Tạo 2 branch để làm việc song sonh:
+        ex: tạo issue2, issue3
+    Note: các nhánh nằm ở đầu mỗi nhánh   
+7. Giải quyết xung đột khi merge
+*** Nhớ chú ý vị trí load của master,các nhash 
+ + khi k còn đường đi từ master sang issue3 thì nó sẽ 
+ conflict vì thế ta cần:
+    git merge issue3 vào
+    => lỗi
+        => chọn cái cũ, mỡi, hay cả hai
+tiếp đó:
+    git add myfile.txt
+    git commit -m "thuc hien merge issue3"
+8. Rebase branch
+    git reset --hard HEAD~: xóa merge trc đó
+    ta chuyển về branch issue3 (nhánh cần rebase):
+    => git rebase master
+    sau khi hiện lỗi thì ta cần:
+    t chọn cái cần thêm
+    => sau khi sửa đổi
+    ta
+    => git add myfile.txt
+    => git rebase --continue
+
+===> 2 cách hợp khi 2 vị trí song song:
+    Cách 1:====> nó hợp luôn vào master
+        khi ở nhánh cần hợp ta merge vs nhánh cần:
+        khi ở master
+
+        git merge issue3 => error
+        git add myfile.txt
+        git commit -m ""
+    Cách 2:==> nó chuyển nhánh từ đoạn song song 
+    thành nối tiếp
+        khi ở nhánh chuẩn bị nhâp vào nhánh khác:
+        khi ở issue3
+
+        git rebase master => error
+        git add myfile.txt
+        git rebase --continue
+
+      

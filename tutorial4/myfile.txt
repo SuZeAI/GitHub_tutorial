@@ -1,0 +1,6 @@
+Lệnh Git mà ngay cả khỉ cũng hiểu.
+dang ki thay doi add o index
+Ghi trạng thái của commit index.
+them giai thich commit
+them giai thick pull
+check reset

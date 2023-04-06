@@ -1,0 +1,22 @@
+1. Pulling
+ - khi pull thì ta sẽ lấy lịch sử trên remote xuống local 
+ TH1: Vào TH khi local chưa thay đổi gì thì ta sẽ pull (get and merge) là fast-forward thuần
+        local: ------(A)------(B)
+        remote: -----(A)------(B)---------(X)---------(Y)
+        khi pull từ remote xuống local thì:
+            => local: -----(A)------(B)---------(X)---------(Y)
+ TH2: TRường hợp khi local thay đổi 
+        local: -----(A)------(B)---------(H)---------(H)
+        remote: -----(A)------(B)---------(X)---------(Y)
+        -> sự xung đột của local và remote về lịch sử 
+        vì thế sau xung đột thì cần tự phải add rồi commit lại  
+2. Fetching
+ - khi pull thì merge nội dung của remote sẽ tự động được tiến hành 
+ - Nhưng có trường hợp ta chỉ xem xét khác nhau chứ không cần hợp vào nhau
+    => ta sử dụng fetch : chỉ lấy lich sử mới nhất
+    syntax: git fetch origin: tự tạo nhánh ảo (không tên): mặc định là "FETCH_HEAD"
+    sau khi đối chiếu:
+        -> lấy thì: git merge FETCH_HEAD or git pull lại
+ => git pull = git fetch + git merge
+3. Pushing
+ - khi push từ llocal lên remote cần làm sao cho nhánh đã được push ở dạng fast-forward. Xung đột push sẽ lỗi

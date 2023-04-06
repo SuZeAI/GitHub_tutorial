@@ -1,0 +1,126 @@
+1. Chỉnh sửa commit ngay trước đó
+    - Trường hợp sử dụng
+        + thêm vào sau file đã commmit trc đó
+        + Chỉnh sửa bình luận trc đó
+        
+2. Hủy bỏ commit trc đó
+    - Có thể xóa commit bằnh reset or rebase -i . 
+    - Nhưng nếu công khai commit rồi thì ta có thể dùng revert
+    - Trường hợp:
+        + xóa commit đã công khai trước đó an toàn
+            -> dùng revert
+
+3. Lọai bỏ commmit
+    - ở reset ta có các mode:
+    _________vị trí HEAD_______index________Work tree____
+    + soft:     change        not change   not change
+    + mixed:    change         change      not change
+    + hard:     change         change        change
+    - Trường hợp sử dụng chính
+        + Đưa trạng thái của index đã thay đổi về ban đầu (mixed)
+        + Xem như hoàn toàn không có commit gần đây (hard)
+        + Xem như chỉ commit là không có (soft)    
+
+4. Trích xuất commit
+    - cherry pick, có thể sao chép commit từ nhánh khác vào nhánh hiện tại
+    - Trường hợp sử dung:
+        + dời commit vào nhánh đến vị trí cuối cùng
+        + thêm commit từ nhánh khác vào nhánh hiện tại
+
+5. Thay đổi lịch sử commit
+    - khi chỉ định lựa chọn --i ở trong rebase: thì có thể thay đổi, thay thế, xoá, tích hợp commit
+    - Trường hợp sử dụng:
+        + Trước khi push lên, sửa lại commit cho tốt
+        + Tổng hợp các commit giống nhau về nội dung thành 1
+        + thêm file sau khi commit thiếu
+
+6. Tồng hợp commmit trên branch rồi merge
+    - Lựa chọn squash, xem như là merge đặc biệt
+    - Khi chỉ định chọn rồi khi merge branch thì các cái được chọn thì sẽ hợp các commmit của nhánh đó
+    - Trường hợp nên sử dung:
+        + tổng hợp commit trong topic branch tổi tích hợp vào branch tích hợp   
+
+7. commit amend
+    - Để sửa đổi commit tại vị trí HEAD
+    - Ta chạy lệnh :
+        + syntax: git commit --amend
+    - Nó sẽ mở dạng ở nano cho mình 
+        -> modifine -> save -> exit -> changed commit
+    - Đặc biệt: 
+        + ngay sau khi sửa dổi file thì ta vẫn có thể thêm sửa đổi đó vào vị trí HEAD
+        + Ví dụ:
+            + thêm file, modifine.....(1)
+            + ta syntax: git add .....
+            + git commit --amend:
+            + Sửa đổi commit tại HEAD đồng thời thêm nhưng thay đổi vừa add vào HEAD
+            => phần (1) sẽ thêm vào HEAD và commit sẽ thay đổi theo ý mình
+
+8. Revert
+    - syntax: git revert HEAD
+    - công dụng là hoàn nguyên giá trị: ở commit trước đó
+    - và nó sẽ commit lại 
+    - Có thể coi là change commit tại commit trước đó của HEAD
+
+9. Reset
+=> mode: --hard: lấy giá trị tại commit sau khi xóa        
+    - syntax: git reset --hard HEAD~~: HEAD trờ về vị trí trước đó 2 commmit
+        -> Nó sẽ lấy trạng thái của commit tại vị trí HEAD
+    - để có  thể hoàn lại cái mình vửa reset ta chạy:
+        + syntax: git reset --hard ORIG_HEAD
+        => hoàn lại 2 commit vừa xóa
+    => Nội dung sẽ là của commit mà HEAD point at 
+=> Mode: --soft: xóa 2 commit và giữ nguyên trạng thái file 
+         --mixed: gần tương tự --soft
+         => sau khi bỏ 2 commit và giữ nội dung của hiện tại thì ta có thể  commit lại thành cái mới (khi đó nội dung mới nhất vẫn còn)        
+         => giữ nội dung mói nhất chứ k phải tại vị trí HEAD chỉ
+
+10. cherry pick
+    - lấy commit từ topic chủ đề vào nhánh topic tích hợp
+    => nghĩa là lấy dữ liệu tại vị trí commit đó vào nhánh master(nhánh chính)
+    => conflict thì ta sẽ chọn dữ liệu phù hợp và chỉnh => git add => git commit
+11. Tổng hợp commit bằng rebase -i
+    - Tổng hợp commit từ quá khứ : nghĩa là merge commit hiên tại(HEAD -> master) vào commit đằng sau nó
+    - Ta sử dụng rebase -i:
+        syntax: git rebase -i HEAD~~
+    => Mở ra cửa sổ "nano": ta chỉnh sửa thay pick thành các command bên dưới:
+        vd: 
+        ________________________________________
+        GNU NANO64:
+            pick 80c6d76 merge commit to master
+            pick f588ca7 them mo ta ve commit
+        ________________________________________
+    => Ta thay "pick" above to a commands below:
+            # Commands:
+            # p, pick <commit> = use commit
+            # r, reword <commit> = use commit, but edit the commit message
+            # e, edit <commit> = use commit, but stop for amending
+            # s, squash <commit> = use commit, but meld into previous commit
+            # f, fixup [-C | -c] <commit> = like "squash" but keep only the previous
+            #                    commit's log message, unless -C is used, in which case
+            #                    keep only this commit's message; -c is same as -C but
+            #                    opens the editor
+            # x, exec <command> = run command (the rest of the line) using shell
+            # b, break = stop here (continue rebase later with 'git rebase --continue')
+            # d, drop <commit> = remove commit
+            # l, label <label> = label current HEAD with a name
+            # t, reset <label> = reset HEAD to a label
+            # m, merge [-C <commit> | -c <commit>] <label> [# <oneline>]
+            # .       create a merge commit using the original merge commit's
+            # .       message (or the oneline, if no original merge commit was
+            # .       specified); use -c <commit> to reword the commit message
+    => sau đó chạy git rebase --continue: thông báo việc chạy đến kết thúc
+    => If conflict when I can use syntax:
+        git rebase --edit-todo: to edit nano
+    => You can abort rebase use syntax:
+        git rebase --abort: dừng rebase lại
+    => 2 Lần continue
+    Cách xóa commit hiện tại và trở về lịch sử của commit trc đó:
+        1. git rebase --i  HEAD~~
+        2. sửa pick thành squash -> lưu rồi thoát
+        3. git rebase --edit-todo: edit thành e
+        4. git rebase --continue
+        5. git rebase -- continue
+12. Merge squash 
+    - Hợp tất cả commit(lịch sử) của branch topic (vd: fixbug, issue,....) vào branch tích hợp
+    - syntax: git merge --squash <name branch> 
+    => git add => git commit

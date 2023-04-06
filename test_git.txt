@@ -1,0 +1,88 @@
+Cần nhớ theo lịch sử sửa đổi cho dễ hình dung
+syntax NANO:
+    + nano <namefile>: mở file trong terminal để edit
+    + ctrl X: exit
+    + Ctrl S: to save
+    + Alt + M: use mouse (true or false): used or not used
+    + Alt + E: redo
+    + Alt + u: undo
+
+syntax GIT:
+    + git add <namefile> <namefile> or "." để add hết
+    + git status: xem trạng thái
+    + git log: xem lịc sử
+        => --grapg: đồ thị
+        => --oneline: 1 dòng
+        => --decorate: các tag
+    + git commit -m "ghi chú"
+    + git remote add <name> <url remote repo>: đắng kí tên cho nguồn
+    + git push -u <name> <name branch>: đẩy lên remote repo tủ local repo
+    + git clone <url remote repo> <name directory>....: clone từ remote repo tạo copy
+    + git pull <url remote repo> <name branch>: lấy lịc sử trên remote repo về ( get và merge lịch sử)
+    + git fetch <url remote repo>: cho mình nhìn thấy sự thay đổi chứ chưa merge
+    + git branch <namebranch>: tạo nhánh
+            git branch -d <namebranch>: xóa nhánh
+    + git checkout <namebranch>: chuyển sang branch khác
+            -> git checkout -b <namebranch>: vừa tạo và chuyển sang branch khác
+    + git merge <commit>: hợp BRANCH
+        git merge <namebranch>: hợp branch vào HEAD
+    + git reset --hard HEAD~: reset trở về đoạn trước đó
+    + git rebase master: nhánh sắp hợp nhất 
+        => git add => git rebase --continue
+    + git rebase -i HEAD~~: hợp với commit đằng sau
+        => sửa "pick" thành command nào đó 
+        => git rebase --continue: thông báo chạy đến kết thúc
+    + git rebase --edit-todo: open nano to refix     
+    + git rebase --abort: thông báo hủy công việc rebase
+    + Lightweight:
+        -> git tag <tagname>: thêm tag vào cài Head đang ở
+        -> git tag: liệt kê danh sách tag
+        -> git tag -d <tagname>: xóa
+    + annotated:
+        -> git tag -am "commen" <nametag>: tạo tag và bình luận
+        -> git tag -n: in cả tag và bình luận
+        nếu chỉ muốn 1 cái thì thêm <tagname>:
+            EX: git tag -n <tagname>
+        -> git tag -d <tagname>: xóa tag
+    + git revert HEAD: quay lại cái ngay trước đó
+    + git reset --mode HEAD~~: làm thay đổi HEAD
+        mode : --hard: làm biến mất hết 2cái commit( lịc sử ) trước đó
+               --mixed, --soft: giữ lại giá trị hiện thời cho dù có quay về lịc sử sau
+    + git reset --mode ORIG_HEAD: hoàn lại về cái trước đó đã reset
+    + git commit --amend: sửa đổi commit tại nơi HEAD
+    + git cherry-pick <id>: lầy lịch sử tại 1 đốt nào đó của branch topic (lấy commit của nó)
+    + git merge --squash <name branch> : hợp các commit của branch toppic vào branch master
+    
+=> Ghi chú:
+    <id>: mã xuất hiện ở đầu
+    <namebranch>: tên nhánh
+    <namefile>: tên file
+    <name>: đặt tên đắng kí cho url
+    <url>: link remote repo
+    <namebranch>: tên nhánh ex: main, master
+    <name directory>: đặt tên thư mục
+
+***nhớ tất cả liên quan đến lịch sử****
+local repo k liên quan đến remote repo
+các nhánh nằm ở đầu mỗi nhánh
+chú ý nhớ đến vị trí của các nhánh (xảy ra ở cuối thực hiện)
+    vd: master nằm đâu, issue năm đâu
+==> có thể hiêu là mọi thứ đều liên quan đến lịch sử đường đi của các đầu nhánh 
+    đắc biệt là nhánh (itegration) 
+cứ sau khi sửa đổi thì phải git add
+Note: các hiển thị là song song hay nối tiếp như mach điện
+    + Nối tiếp hợp trực tiếp được
+    + song song thì cần theo 2 cách 
+        trong phần 8:
+        (url: /home/vutuyen/Documents/W-SUZURAIN (W5)/TEST-GITHUB/Note_Git/Grow/howtousebranch.txt)
+*** Cứ Lỗi khi merge thì ta cần add and commit lại 
+*** Khi mà git add: nghĩa là thêm nó vào work tree
+    Khi mà git commit: nghĩa là thêm nó vào index
+        -> index là nơi mà có thể push lên remote repo
+    Quy trình: computer --> work tree --> index(local repo) --> remote repo
+                        |              |                    |            
+                    git add         git commit          git push
+
+*** khi mà push lên remote repo: thì cần dạng fast forward
+*** Coi các commit là lịch sử
+

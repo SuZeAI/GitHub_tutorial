@@ -1,0 +1,40 @@
+Hướng Dẫn 2 chia sẻ repository
+1.Tạo remote repo trên github
+2.Push lên remote repo
+ - use cmd:
+    + push lịc sử sửa đổi của local repo lên remotr repo
+    + Thêm địa chỉ của remote repo 2 cách:
+        * đặt tên và ghi sẵn lại:
+            bước 1: đắng kí tên là origin
+                syntax: git remote add <name> <url>
+                <name>: tên đăng kí
+                <url>: link remote repo
+            bước 2: git push lên remote repo
+                syntax: push <repo> <refspec>....
+                <repo>: địa chỉ nơi push
+                <refpec>: chỉ nhánh sẽ push
+        Note: Thực hiện lệnh dưới đây rồi push phần commit lên remote repository
+    origin. Khi chỉ định thực hiện lựa chọn -u thì từ lần tiếp theo trở đi có
+    thể giản lược phần chỉ định tên branch đó. Tuy nhiên, đầu tiên hết khi push
+    lên remote repository rỗng thì sẽ không thể giản lược tên branch hay tên
+    remote repository.
+    -> khi repo rỗng thì cần name branh, thêm -u vào thì giản lược name branh
+    đoạn sau
+
+3. Clone form remote repo
+ - giả sử giờ có thành viên khác clone về máy mình name "tutorial2"
+ syntax:
+    git clone <url remote repo> <name directory>....
+    <url remote repo> : link của repo đó
+    <name directory>: tên thư mục để clone vào đó
+4. push từ repo đã clone
+ - thay đổi văn bản trong sample.txt
+ cmd:
+     + git add sample.txt
+     + git commit -m "thay doi"
+     + git push
+5. Pull tử remote repo
+ - pull từ tutorial2 vào tutorial
+ syntax: git pull <url remote repo> <refspec>........
+            <url remote repo>: link để pull lịc sử về máy
+            <refspec>: brach để pull về

@@ -1,0 +1,25 @@
+2 loại Tag:
+    + Lightweight tag: nhẹ
+    + annotated tag: chú thích
+0. Chuẩn bị trước:
+    - mkdir: 
+    - cd dir
+    - echo "Lệnh Git mà ngay cả khỉ cũng hiểu." > myfile.txt
+    - git init
+    - git add
+    - git commit -m ""
+1. Lightweight: 
+    + syntax: git tag <tagname>: thêm tag
+    + ex: thêm tag apple vào HEAD
+     => git tag apple
+    + sau đó ta hiện lịch sử bằng git log thêm --decorate
+    => hiển thị Tag
+    syntax: git log --decorate
+2. annotated tag:
+    + syntax: git tag -am "commen" <nametag>
+    + git tag -n: hiển thị tag và commen
+===> Lightweight = tag + bình luận(mặc định là commit)
+===> annotated = tag + bình luận(tự thêm)
+
+3. Xóa tag:
+    + syntax: git tag -d <tagname>

@@ -1,0 +1,91 @@
+Branch: chưa tất cả lịch sử của branch master từ đầu đến khi tạo branch new
+NOTE: có thể coi nó tương tự như local, remote repo
+        local <=> branch master (branch integration)
+        remote <=> new branch (branch Topic)
+        ví dụ: cần pull rồi merge ròi push
+               cần rebase rồi merge
+        nó còn coi cách nhánh bị chia ra cũng có thể coi là branch integration
+        ------(master)---------(integration)
+                |-----(fixbug)-----(integration) or (topic)
+                        |----(fixbug ~1)----(topic)
+1. Nói về Branch
+    + Xảy ra khi có nhiều thành viên đồng thời thay đổi lịch sử  => tiến hành song song
+    + Branch để tạo nhánh ghi lại các luồng lịch sử để tiến hành nhiều thay đổi
+    + Branch phân nhánh có thể merge lại được
+    + Có thể soát lỗi 1 cách dễ dàng
+-> Khi commit -m lần đầu tiên 
+2. Vận dùng Branch
+* 2 quy tắc vận dụng: 2 loại vận dụng branch
+    + branch chủ đề
+    + branch tich hợp
+* Branch Topic:
+ - Tiến hành liên quan công việc vd: branch thêm chức năng
+                                     branch sửa lỗi
+ - Sau khi hoàn thiện topic branch đó thì ta cho vào integration branch( hợp vào nhau)
+* Branch integration
+ - Tạo ra bản hợp nhất bất cứ lúc nào 
+ - duy trì ổn định trong quá trình phát triển
+ - mặc định coi branch master là branch tích hợp
+ => có thể coi đó là nhánh chính khi mới tạo 
+
+ ex:
+            ------------repair-----------   
+            |                           |
+ master --------------------------------merge----integration 
+            |                               |
+            ---------------------topic-------
+3. Chuyển đổi branch
+ - để chuyển đổ công việc thì ta sẽ dùng checkout:
+    syntax: git checkout
+    => tạo branch new nếu chưa có:
+    => chuyển đỏi branch
+* HEAD: phần đầu branch hiện tại
+ - mặc định là phần đầu của master
+ - khi commit có thể dùng dấu ~(tilde) và ^(caret)
+ * Stash
+  - dùng để lưu trữ điểm thay đổi khi mà commit vào branch khác mà có file giống đã bị thay đổi
+4. Tích hợp branch
+ - sau khi hoàn thành xom công việc ở branch topic thì ta sẽ tich hợp vào branch
+ integration
+* Merge:
+ - sử dụng merger có thể tổng hợp nhiều lịch sử
+ Các trường hợp  khi merge
+  + case 1: khi merge bugfix vào branch master mà master k có gì thay đổi => đơn giản 
+  do branch fixbug chưa tất cả lịch sử trc đố của master khi tạo branch new nên merge
+  chỉ cần gộp vào lịch sử của nhau rất đơn giản
+    ---(master)
+        |
+        -----(X)------------(fixbug)--------
+    merge => ----(master)-----(X)-----(fixbug)-------
+  + case 2: barnch master vẫn thay đổi sau khi có new branch
+   -> Cần tổng hợp sự thay đổi của 2 branch thành 1
+    ---(master)-------------(A)-------------merger
+        |               tổng hợp sửa đổi     |
+        -----(X)------------(fixbug)----------
+* Rebase:
+ EX: case 2 ở trên
+ khi đó rebase sẽ nối lịch sử của branch bugfix vào branch master 
+ Ex: 
+    ---(master)-------------(A)-------------
+        |
+        -----(X)------------(fixbug)--------
+    Rebase =>  ---(master)-------------(A)--------(X)------------(fixbug)--------
+ sau đó merge là xong có thể coi nó giống với pull
+Note: 
+*** Merge
+ => Lịch sử nội dung thay đổi vẫn còn lại nhưng sẽ trở nên phức tạp hơn.
+*** Rebase
+ => Lịch sử sẽ trở nên đơn giản nhưng nội dung thay đổi từ commit ban đầu 
+sẽ bị thay đổi. Cho nên cũng có trường hợp rơi vào tình trạng commit gốc 
+không hoạt động.
+Ví dụ áp dụng:
+ => nếu đưa code mới nhất của integration vào topic => sử dụng rebase
+ => đưa branch topic vào integration thì ta cần rebase rồi mới merge
+5. Ví dụ vận dụng trên branch chủ đề (topic branch) và branch tích hợp 
+(integration branch)
+ - Nên tạo các branch:
+ + branch master and branch develop: main
+ + branch hotfix: nên từ branch master
+ + branch feature: tạo từ branch dev
+ + branch release: tạo từ branch dev
+ 

@@ -1,0 +1,26 @@
+Hợp nhất lịch sử thay đổi
+1. Merge lịch sử thay đổi
+ - Merge: xảy ra trong trường hợp khi mà ta đã pull (file đã giống)
+mà khi mình push lại mà có người đã push sửa lịch sử thay đổi r thì
+ta nên merge vào phần lịch sử của mình trước rồi mới push 
+2. Cách thực hiện
+ - nó xảy ra conflict vào chỗ khi chỉnh sửa file trong local repo and 
+remote repo tạo nên sự khác nhau
+=> ta nên giải quyết bằng cách chỉnh sửa bằng tay của mình
+=> hợp nhất khi cả 2 file đã chỉnh sửa giống nhau -> merge his vào nhau
+3. Push trong trạng thái xung đột:
+ - How to create conflict:
+ + sửa đổi 1 file trong 2 local repo
+ + r đồng thời push
+ ==> error
+4. Solution
+ - thấy conflict của nó ta dùng cmd:
+ syntax: git pull <nameurl> <namebrach>
+ => thấy hiển thị lỗi merge
+ - ta dùng syntax: 
+    -> git pull để hợp lại phần thay đổi tự đông git merge(bằng cách git commit nó vào)
+    -> git fetch để thấy được khác nhau rồi meger thủ công
+        -> git merge    
+
+===> nó đã hợp nhất
+dùng "git log --graph --oneline" để xem

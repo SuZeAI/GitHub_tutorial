@@ -1,0 +1,25 @@
+I. chia sẻ repo
+1. Push lên  repo remote
+ - share history of local repository
+ cmd: push
+ - upload lịc sử thay đổi của local repo bằng push == upload
+ - lịc sử thay đổi của remote repo sẽ giống như là lịc sử của local repo
+ giản đồ:
+         remote repo                    local repo
+            html            push           html
+            css         <-----------       css
+2. clone 1 remote repo
+  - khi clone từ remote repo thì sẽ tạo thành local repo máy khác
+  cmd: clone
+3. Pull từ remote repo
+ - để cập nhật thứ mà người ta thay đổi trên repo mà nhiều người dùng thì ta cần
+ thực hiện pull về máy để thấy sự thay đổi đó:
+ cmd: pull
+         remote repo                    local repo
+            html            pull           html
+            css         ----------->       css
+
+***NOTE: git sẽ dựa vào lịc sử mà push clone pull dữ liệu từ local and remote repo
+push đấy dữ liệu lên
+clone tạo sao chép lấy hết về
+pull lấy lịc sử thay đổi từ chỗ mình sửa lên trên của ng khác sửa

@@ -1,0 +1,38 @@
+II. Hướng dẫn 1 git cơ bản:
+1. Cài đặt git
+ - nên dùng console
+2. Thiết lập ban đầu
+ - Cài đặt name and gmail thực hiện sau 1 lần là đc. Coi như người này sẽ commit
+ - Thiết lập của git trong file .gitconfig được tạo trong direct của người dùng hay
+ dùng console với lệnh sau để sửa đổi
+    * cmd:
+      + Thêm người dùng:
+        git config --global user.name "tên người dùng"
+        git config --global user.gmail "mail người dùng"
+      + Thêm màu cho phần xuất ra của git:
+        git config --global color.ui auto
+      + Lập bí danh giản lược checkout và co:(aliases)
+        git config --global alias.co checkout
+3. Tạo repo mới:
+ - Đầu tiên tạo thư mục mình cần với tên tutorial
+ cmd:
+    mkdir tutorial
+    cd tutorial
+    git init
+    ==> tutorial đặt dưới sự quản lí của git
+4. Commit file
+ - git status: kiểm tra trạng thái của working tree and index
+ * bây giờ file sample không được theo dõi do chưa đăng kí vào index nên ta cần
+ đăng kí nó vào index
+    --> có thể hiểu như là khi chúng ta đăng kí học tại PTIT vậy thì trường mới
+    được phép theo dõi cta ngoài trường
+ - git add: để đăng kí file vào index
+    cmd:
+        thêm từng file theo mình
+        git add <file> <file> <file>......
+        thêm hết thì:
+        git add .
+    => Đã đăng kí vào index
+ - Chuẩn bị để commit:
+    git commit -m "những thay đổi": -> đã đưa vào local repository
+ - git log: kiểm tra lịch thay đổi của repo
