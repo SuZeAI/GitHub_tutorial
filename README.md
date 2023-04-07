@@ -17,7 +17,7 @@
   
       - Những lưu ý khi code
 
-<h1 align='center'>  👯Wishing everyone a happy learning experience with Git! 👯 </h1>
+<h2 align='center'>  👯Wishing everyone a happy learning experience with Git! 👯 </h2>
 
  
 
