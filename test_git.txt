@@ -22,6 +22,7 @@ syntax GIT:
     + git fetch <url remote repo>: cho mình nhìn thấy sự thay đổi chứ chưa merge
     + git branch <namebranch>: tạo nhánh
             git branch -d <namebranch>: xóa nhánh
+            git branch -m <namebranch>: thay đổi tên chính nhánh HEAD chỉ vào 
     + git checkout <namebranch>: chuyển sang branch khác
             -> git checkout -b <namebranch>: vừa tạo và chuyển sang branch khác
     + git merge <commit>: hợp BRANCH
