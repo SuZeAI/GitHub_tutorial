@@ -1,5 +1,5 @@
 <h1 align='center'> 🔥GitHub_tutorial🔥</h1>
-<h1>🌱 Git For Everyome</h1>
+<h1>🌱 Git For Everyone</h1>
 <h2> 🔭 Description Github_tutorial</h2>
 
 1. Folder Note_git: chứa các thư mục chỉ dẫn học git
