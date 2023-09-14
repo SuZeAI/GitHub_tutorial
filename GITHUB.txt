@@ -8,6 +8,10 @@ syntax NANO:
     + Alt + u: undo
 
 syntax GIT:
+    + git config --global user.name "tên người dùng"
+    + git config --global user.gmail "mail người dùng"
+    + git config credential.username "tên người dùng"
+    
     + git add <namefile> <namefile> or "." để add hết
     + git status: xem trạng thái
     + git log: xem lịc sử
@@ -15,11 +19,13 @@ syntax GIT:
         => --oneline: 1 dòng
         => --decorate: các tag
     + git commit -m "ghi chú"
+    + git remote set-url [--push] <name> <newurl>: cài đặt lại name của url
     + git remote add <name> <url remote repo>: đắng kí tên cho nguồn
-    + git push -u <name> <name branch>: đẩy lên remote repo tủ local repo
+    + git push -u <name> <name branch>: đẩy lên remote repo từ local repo
     + git clone <url remote repo> <name directory>....: clone từ remote repo tạo copy
     + git pull <url remote repo> <name branch>: lấy lịc sử trên remote repo về ( get và merge lịch sử)
     + git fetch <url remote repo>: cho mình nhìn thấy sự thay đổi chứ chưa merge
+    	-> Sau đó ta command: git rebase FETCH_HEAD: hợp branch FETCH_HEAD vào master
     + git branch <namebranch>: tạo nhánh
             git branch -d <namebranch>: xóa nhánh
             git branch -m <namebranch>: thay đổi tên chính nhánh HEAD chỉ vào 
