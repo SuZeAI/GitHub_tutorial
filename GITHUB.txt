@@ -28,7 +28,8 @@ syntax GIT:
     	-> Sau đó ta command: git rebase FETCH_HEAD: hợp branch FETCH_HEAD vào master
     + git branch <namebranch>: tạo nhánh
             git branch -d <namebranch>: xóa nhánh
-            git branch -m <namebranch>: thay đổi tên chính nhánh HEAD chỉ vào 
+            git branch -m <namebranch>: thay đổi tên chính nhánh HEAD chỉ vào
+            get current branch: git symbolic-ref --short HEAD
     + git checkout <namebranch>: chuyển sang branch khác
             -> git checkout -b <namebranch>: vừa tạo và chuyển sang branch khác
     + git merge <commit>: hợp BRANCH
@@ -45,12 +46,20 @@ syntax GIT:
         -> git tag <tagname>: thêm tag vào cài Head đang ở
         -> git tag: liệt kê danh sách tag
         -> git tag -d <tagname>: xóa
-    + annotated:
+    + annotated and create version of code:
         -> git tag -am "commen" <nametag>: tạo tag và bình luận
         -> git tag -n: in cả tag và bình luận
         nếu chỉ muốn 1 cái thì thêm <tagname>:
             EX: git tag -n <tagname>
         -> git tag -d <tagname>: xóa tag
+        -> flow: 
+            + git commit ....
+            + git tag -a "..." -m "..."
+        -> git tag
+        -> get tag current: git describe --exact-match --tags
+        -> git checkout <tagname>: chuyển sang vị trí version tag mà không phải reset commit
+        -> git show <tagname>: hiển thị chi tiết tagname
+        
     + git revert HEAD: quay lại cái ngay trước đó
     + git reset --mode HEAD~~: làm thay đổi HEAD
         mode : --hard: làm biến mất hết 2cái commit( lịc sử ) trước đó
