@@ -1,0 +1,3 @@
+# Auto authen github.com
+gh auth setup-git
+gh auth login
