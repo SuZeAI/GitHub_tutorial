@@ -1,0 +1,27 @@
+Combining change history
+1. Merge change history
+ - Merge happens when we already pulled (files were same)
+   but while we are working locally and pushing, someone else has
+   already pushed new commit history. We should merge remote history
+   into our local history before pushing again.
+2. How to do it
+ - Conflict occurs when same file is edited both in local and remote
+   and contents differ.
+=> we resolve manually by editing file
+=> after both files agree, we merge histories.
+3. Push in conflicted state:
+ - How to create conflict:
+ + edit same file in two different local repos
+ + both push
+ ==> error
+4. Solution
+ - after seeing conflict, use command:
+ syntax: git pull <remote name> <branch>
+ => you will see merge conflict
+ - options:
+    -> git pull: fetch and then auto-merge (and commit) if possible
+    -> git fetch: only fetch to see differences then merge manually
+        -> git merge    
+
+===> histories are now merged
+use "git log --graph --oneline" to visualize

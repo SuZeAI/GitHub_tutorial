@@ -1,0 +1,4 @@
+Even a monkey can understand these Git commands.
+add: Register changes in the index
+commit: Save the state of the index
+pull: Get contents from the remote repository

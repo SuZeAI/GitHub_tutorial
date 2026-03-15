@@ -1,0 +1,37 @@
+II. Git basic guide 1:
+1. Install git
+ - Prefer using console/terminal
+2. Initial configuration
+ - Set user name and email once. They identify who makes commits.
+ - Git settings are stored in .gitconfig in user's home directory.
+   You can edit using console commands:
+    * commands:
+      + Add user:
+        git config --global user.name "user name"
+        git config --global user.gmail "user email"
+      + Enable colors for git output:
+        git config --global color.ui auto
+      + Add aliases for checkout and co:
+        git config --global alias.co checkout
+3. Create new repo:
+ - First create directory tutorial
+ commands:
+    mkdir tutorial
+    cd tutorial
+    git init
+    ==> tutorial is now under git control
+4. Commit file
+ - git status: check state of working tree and index
+ * Currently file sample is untracked (not registered in index) so we need
+   to add it to index.
+    --> similar to registering as a student at PTIT so the school can track you.
+ - git add: register file in index
+    commands:
+        add specific files:
+        git add <file> <file> <file>...
+        add all:
+        git add .
+    => files registered in index
+ - Prepare commit:
+    git commit -m "changes": -> store in local repository
+ - git log: check history of repo

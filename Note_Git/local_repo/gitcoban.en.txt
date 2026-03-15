@@ -1,0 +1,27 @@
+I. Git Basic
+1. Repository manages history:
+ - Records history of directories and files
+ - Two types of repo:
+    + local repo: repo on your machine
+    + remote repo: repo on server/elsewhere
+    Note: to let others clone, push your local repo to remote.
+        To create local repo:
+            + new repo
+            + or copy from remote repo (clone)
+2. Commit records changes:
+ - Each commit records changes made by you or others
+  Commit message tips:
+    + Line 1: Summary of the change
+    + Line 2: Blank line
+    + Line 3+: Reasons/details of the change
+3. Work tree and index:
+ - Index (staging area): where you prepare changes before commit
+ - Work tree: directory under git control
+ - In Git, after commit, the repository state is not saved directly from working tree,
+   but from index configured in between. So to record file state by commit,
+   you must first register files in the index.
+    Diagram:
+        repo <- index <- working tree
+        html      html      html
+        css                 css
+        cannot record css state before it is registered in index

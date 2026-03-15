@@ -1,0 +1,6 @@
+Git commands that even a monkey can understand.
+register changes with add in the index
+Save the state of the index with commit.
+add explanation about commit
+add explanation about pull
+check reset

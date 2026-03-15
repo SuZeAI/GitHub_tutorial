@@ -1,0 +1,38 @@
+Guide 2: sharing repository
+1. Create remote repo on GitHub
+2. Push to remote repo
+ - Use commands:
+    + push history of local repo to remote repo
+    + Add remote repo address in 2 ways:
+        * register name and URL:
+            step 1: register name origin
+                syntax: git remote add <name> <url>
+                <name>: remote name
+                <url>: remote repo url
+            step 2: push to remote repo
+                syntax: git push <repo> <refspec>....
+                <repo>: remote name
+                <refspec>: branch to push
+        Note: First time pushing commits to empty remote repository origin,
+        you may want to use -u so that later you can omit branch name.
+        When remote is empty, you cannot omit remote/branch name.
+        -> when repo is empty, you must specify branch name; with -u you can
+           omit it in later pushes.
+
+3. Clone from remote repo
+ - Suppose another member clones to their machine as directory "tutorial2"
+ syntax:
+    git clone <remote repo url> <directory name>....
+    <remote repo url> : repo url
+    <directory name>: directory name to clone into
+4. Push from cloned repo
+ - edit sample.txt
+ commands:
+     + git add sample.txt
+     + git commit -m "change"
+     + git push
+5. Pull from remote repo
+ - pull from tutorial2 into tutorial
+ syntax: git pull <remote name> <branch>........
+            <remote name>: remote to pull from
+            <branch>: branch to pull

@@ -1,0 +1,87 @@
+Branch: contains all history of branch master from the start until the new branch is created
+NOTE: you can think of it similar to local/remote repo
+        local <=> branch master (integration branch)
+        remote <=> new branch (topic branch)
+        example: need pull then merge then push
+                 need rebase then merge
+        branch splitting can also be seen as integration/topic branches
+        ------(master)---------(integration)
+                |-----(fixbug)-----(integration) or (topic)
+                        |----(fixbug ~1)----(topic)
+1. About Branch
+    + Used when many members change history at the same time  => parallel work
+    + Branch creates separate history flows so multiple changes can proceed
+    + Branches can later be merged together
+    + Easier to review and fix bugs
+-> After first commit -m
+2. Using Branches
+* Two kinds of usage: two types of branches
+    + topic branch
+    + integration branch
+* Topic Branch:
+ - Used for a specific task, e.g.: feature branch
+                                     bugfix branch
+ - After finishing the topic branch, merge it into integration branch
+* Integration Branch
+ - Always can create integrated builds
+ - Keep stable during development
+ - By default consider master as integration branch
+ => can treat it as the main branch when just created 
+
+ ex:
+            ------------repair-----------   
+            |                           |
+ master --------------------------------merge----integration 
+            |                               |
+            ---------------------topic-------
+3. Switching Branch
+ - To switch work context we use checkout:
+    syntax: git checkout
+    => create new branch if not exist:
+    => switch branch
+* HEAD: tip of current branch
+ - default is tip of master
+ - when referring to commits we can use ~(tilde) and ^(caret)
+ * Stash
+  - used to stash local changes when switching commits/branches that share same files
+4. Integrating Branches
+ - After finishing work in topic branch we integrate into integration branch
+* Merge:
+ - merging can combine many histories
+ Cases when merging
+  + case 1: merging bugfix into master while master has no new changes => simple
+  because bugfix branch contains all old history from master at branch creation,
+  so we just graft its new commits
+    ---(master)
+        |
+        -----(X)------------(fixbug)--------
+    merge => ----(master)-----(X)-----(fixbug)-------
+  + case 2: master also has new commits after branch creation
+   -> need to combine changes from both branches
+    ---(master)-------------(A)-------------merge
+        |               combine changes      |
+        -----(X)------------(fixbug)----------
+* Rebase:
+ Example: case 2 above
+ rebase moves bugfix history onto master
+ Ex: 
+    ---(master)-------------(A)-------------
+        |
+        -----(X)------------(fixbug)--------
+    Rebase =>  ---(master)-------------(A)--------(X)------------(fixbug)--------
+ after that a merge is trivial; similar to pull
+Note: 
+*** Merge
+ => Keeps original commit history but graph becomes more complex.
+*** Rebase
+ => History becomes simpler but original commit hashes and content change.
+   Sometimes old commits may not work anymore.
+Examples:
+ => to bring latest integration code into topic => use rebase
+ => to bring topic branch into integration we usually rebase then merge
+5. Example usage of topic branch and integration branch
+ - Suggested branches:
+ + master and develop: main branches
+ + hotfix: from master
+ + feature: from develop
+ + release: from develop

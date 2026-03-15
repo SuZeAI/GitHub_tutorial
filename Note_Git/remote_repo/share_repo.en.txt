@@ -1,0 +1,24 @@
+I. Sharing repository
+1. Push to remote repo
+ - share history from local repository
+ command: git push
+ - upload history of local repo to remote repo
+ - history of remote will be same as local
+ Diagram:
+         remote repo                    local repo
+            html            push           html
+            css         <-----------       css
+2. Clone a remote repo
+  - cloning remote repo creates a new local repo on another machine
+  command: git clone
+3. Pull from remote repo
+ - to update local with changes made by others on shared repo, use pull:
+ command: git pull
+         remote repo                    local repo
+            html            pull           html
+            css         ----------->       css
+
+***NOTE: Git decides push/clone/pull behavior based on history.
+- push: send changes up
+- clone: copy entire repo (all history)
+- pull: get new history from others

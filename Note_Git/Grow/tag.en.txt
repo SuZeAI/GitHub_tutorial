@@ -1,0 +1,25 @@
+Two types of Tag:
+    + Lightweight tag
+    + Annotated tag
+0. Preparation:
+    - mkdir 
+    - cd dir
+    - echo "Git commands that even a monkey can understand." > myfile.txt
+    - git init
+    - git add
+    - git commit -m "..."
+1. Lightweight: 
+    + syntax: git tag <tagname>: add tag
+    + example: add tag apple at HEAD
+     => git tag apple
+    + then show history with git log and --decorate
+    => tags will be displayed
+    syntax: git log --decorate
+2. Annotated tag:
+    + syntax: git tag -am "comment" <tagname>
+    + git tag -n: show tags and comments
+===> Lightweight = tag + default comment (commit message)
+===> Annotated = tag + custom comment
+
+3. Delete tag:
+    + syntax: git tag -d <tagname>

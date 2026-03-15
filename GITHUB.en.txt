@@ -1,0 +1,104 @@
+Remember the change history to make it easy to visualize
+
+NANO syntax:
+    + nano <namefile>: open file in terminal to edit
+    + Ctrl X: exit
+    + Ctrl S: save
+    + Alt + M: use mouse (true or false): enable or disable mouse
+    + Alt + E: redo
+    + Alt + U: undo
+
+GIT syntax:
+    + git config --global user.name "user name"
+    + git config --global user.gmail "user email"
+    + git config credential.username "user name"
+    
+    + git add <namefile> <namefile> or "." to add all
+    + git status: show status
+    + git log: show history
+        => --graph: graph view
+        => --oneline: one line per commit
+        => --decorate: show tags/refs
+    + git commit -m "message"
+    + git remote set-url [--push] <name> <newurl>: reset url of a remote name
+    + git remote add <name> <remote repo url>: register a name for a remote
+    + git push -u <name> <branch name>: push from local repo to remote repo
+    + git clone <remote repo url> <directory name>....: clone from remote repo as a copy
+    + git pull <remote repo url> <branch name>: get history from remote repo (get and merge history)
+    + git fetch <remote repo url>: see changes without merging
+        -> Then run: git rebase FETCH_HEAD: rebase FETCH_HEAD branch onto master
+    + git branch <branchname>: create branch
+            git branch -d <branchname>: delete branch
+            git branch -m <branchname>: rename current branch HEAD points to
+            get current branch: git symbolic-ref --short HEAD
+    + git checkout <branchname>: switch branch
+            -> git checkout -b <branchname>: create and switch to new branch
+    + git merge <commit>: merge BRANCH
+        git merge <branchname>: merge branch into HEAD
+    + git reset --hard HEAD~: reset back one commit
+    + git rebase master: rebase topic branch onto master
+        => git add => git rebase --continue
+    + git rebase -i HEAD~~: interactively edit last two commits
+        => change "pick" to another command
+        => git rebase --continue: keep going until finished
+    + git rebase --edit-todo: open nano to edit todo
+    + git rebase --abort: cancel rebase
+    + Lightweight:
+        -> git tag <tagname>: add tag at current HEAD
+        -> git tag: list tags
+        -> git tag -d <tagname>: delete tag
+    + annotated and create version of code:
+        -> git tag -am "comment" <tagname>: create annotated tag with comment
+        -> git tag -n: print tags and comments
+        if you want only one tag then add <tagname>:
+            EX: git tag -n <tagname>
+        -> git tag -d <tagname>: delete tag
+        -> flow: 
+            + git commit ....
+            + git tag -a "..." -m "..."
+        -> git tag
+        -> get current tag: git describe --exact-match --tags
+        -> git checkout <tagname>: move to version at tag without resetting commits
+        -> git show <tagname>: show tag details
+        
+    + git revert HEAD: revert changes of last commit
+    + git reset --mode HEAD~~: move HEAD back
+        mode : --hard: remove last 2 commits from history
+               --mixed, --soft: keep current file content even when history moves back
+    + git reset --mode ORIG_HEAD: restore to state before last reset
+    + git commit --amend: modify commit at HEAD
+    + git cherry-pick <id>: copy a specific commit from a topic branch
+    + git merge --squash <branch name>: squash commits from topic branch into master
+    
+=> Notes:
+    <id>: hash at beginning of a commit line
+    <branchname>: branch name
+    <namefile>: file name
+    <name>: remote name
+    <url>: remote repo url
+    <branchname>: branch name ex: main, master
+    <directory name>: directory name
+
+***remember everything is related to history***
+local repo is independent from remote repo
+branches are at the tip of each branch
+pay attention to where branches are (especially at the end)
+    ex: where master is, where issue branch is
+==> you can understand that everything is about the history path of branch tips,
+    especially integration branch
+whenever you change something you must git add
+Note: diagrams can be parallel or serial like circuits
+    + serial: can merge directly
+    + parallel: need one of two ways 
+        in section 8:
+        (url: /home/vutuyen/Documents/W-SUZURAIN (W5)/TEST-GITHUB/Note_Git/Grow/howtousebranch.txt)
+*** Any merge conflict: we must git add and git commit again
+*** When we git add: we add changes into work tree staging (index)
+    When we git commit: we save index to repository
+        -> index is the place that can be pushed to remote repo
+    Flow: computer --> work tree --> index(local repo) --> remote repo
+                        |              |                    |            
+                    git add         git commit          git push
+
+*** when pushing to remote repo: it should be fast-forward
+*** Think of each commit as history

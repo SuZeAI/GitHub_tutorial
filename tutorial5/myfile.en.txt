@@ -1,0 +1,4 @@
+first commit
+add description about add
+add description about commit command
+add description about pull command

@@ -1,0 +1,124 @@
+1. Edit the commit just before
+    - When to use
+        + add files you forgot to previous commit
+        + edit previous commit message
+        
+2. Cancel the previous commit
+    - You can delete commits using reset or rebase -i.
+    - But if commits are already published, use revert.
+    - Use case:
+        + safely undo a public commit
+            -> use revert
+
+3. Remove commits with reset
+    - reset modes:
+    _________HEAD position_______index________Work tree____
+    + soft:       changed        unchanged     unchanged
+    + mixed:      changed        changed       unchanged
+    + hard:       changed        changed       changed
+    - Main use cases
+        + Return index to previous committed state (mixed)
+        + Pretend recent commits never happened (hard)
+        + Only remove commits but keep working tree state (soft)    
+
+4. Extract commits
+    - cherry-pick lets you copy commits from another branch to current branch
+    - Use cases:
+        + move a commit to the end of another branch
+        + add commits from one branch to another
+
+5. Rewrite commit history
+    - with rebase --i you can edit, reorder, remove, or squash commits
+    - Use cases:
+        + Clean up commits before pushing
+        + Merge similar commits into one
+        + Add missing files into previous commit
+
+6. Squash commits on branch then merge
+    - Use --squash option when merging to combine commits
+    - When merging with squash, selected commits are merged into a single commit
+    - Use cases:
+        + combine a topic branch commit history before merging into integration branch   
+
+7. commit --amend
+    - To modify commit at HEAD
+    - Command:
+        + git commit --amend
+    - Opens nano editor
+        -> modify -> save -> exit -> commit changed
+    - Special:
+        + right after editing files you can still add them to HEAD
+        + Example:
+            + add/modify files.....(1)
+            + git add .....
+            + git commit --amend
+            + This modifies HEAD commit and includes newly added changes
+            => changes in (1) are added into HEAD and commit message/content is updated
+
+8. Revert
+    - syntax: git revert HEAD
+    - restores the state of previous commit
+    - and creates a new commit
+    - can be seen as new commit that undoes last commit
+
+9. Reset
+=> mode: --hard: take state from commit after removing others
+    - syntax: git reset --hard HEAD~~: move HEAD back by 2 commits
+        -> working tree becomes the state of that commit
+    - to undo that reset:
+        + git reset --hard ORIG_HEAD
+        => restore the two removed commits
+    => content becomes that of commit where HEAD now points
+=> Mode: --soft: remove commits but keep current files
+         --mixed: similar to soft
+         => after removing commits but keeping current content you can commit again
+         => keeps latest file content, not the one at old HEAD
+
+10. cherry-pick
+    - take a commit from topic branch and apply onto integration/master
+    => i.e. copy data at that commit into master
+    => if conflict: resolve manually then git add then git commit
+11. Combine commits with rebase -i
+    - Combine commits from the past: e.g. merge HEAD commit into previous one
+    - Use interactive rebase:
+        syntax: git rebase -i HEAD~~
+    => opens nano: change lines starting with pick to other commands:
+        e.g.: 
+        ________________________________________
+        GNU NANO64:
+            pick 80c6d76 merge commit to master
+            pick f588ca7 add description for commit
+        ________________________________________
+    => Replace "pick" with commands from the help list below:
+            # Commands:
+            # p, pick <commit> = use commit
+            # r, reword <commit> = use commit, but edit the commit message
+            # e, edit <commit> = use commit, but stop for amending
+            # s, squash <commit> = use commit, but meld into previous commit
+            # f, fixup [-C | -c] <commit> = like "squash" but keep only the previous
+            #                    commit's log message, unless -C is used, in which case
+            #                    keep only this commit's message; -c is same as -C but
+            #                    opens the editor
+            # x, exec <command> = run command (the rest of the line) using shell
+            # b, break = stop here (continue rebase later with 'git rebase --continue')
+            # d, drop <commit> = remove commit
+            # l, label <label> = label current HEAD with a name
+            # t, reset <label> = reset HEAD to a label
+            # m, merge [-C <commit> | -c <commit>] <label> [# <oneline>]
+            # .       create a merge commit using the original merge commit's
+            # .       message (or the oneline, if no original merge commit was
+            # .       specified); use -c <commit> to reword the commit message
+    => then run git rebase --continue: continue until finished
+    => If conflict: use git rebase --edit-todo to adjust
+    => You can abort with git rebase --abort
+    => Often you need to run continue twice
+    Method to drop current commit and go back to previous history:
+        1. git rebase -i HEAD~~
+        2. change pick to squash -> save & exit
+        3. git rebase --edit-todo: change to e
+        4. git rebase --continue
+        5. git rebase --continue
+12. Merge with squash 
+    - Combine all commits (history) from topic branch (fixbug, issue,....) into integration branch
+    - syntax: git merge --squash <branch name> 
+    => git add => git commit

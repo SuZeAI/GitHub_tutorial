@@ -1,0 +1,51 @@
+USE BRANCH
+1. Preparation
+2. Create branch
+    syntax: git branch <branchname>: create branch
+    + git branch : list branches
+3. Switch branch
+    syntax: git checkout <branchname>: switch branch
+    Note: 
+        git checkout -b <branchname>: create and switch in one command
+4. Merge branch
+    syntax: git merge <commit> : merge a commit
+            git merge <branchname>: merge a branch into current
+5. Delete Branch
+    syntax: git branch -d <branchname>: delete branch
+6. Work in parallel   
+    + Create two branches to work in parallel:
+        ex: issue2, issue3
+    Note: branches are at the tip of each branch history   
+7. Resolve conflicts when merging
+*** Always pay attention to position of master and other branches
+ + when there is no path from master to issue3 history will diverge
+   and merge causes conflict, so we must:
+    git merge issue3 into master
+    => conflict
+        => choose old, new, or both changes
+then:
+    git add myfile.txt
+    git commit -m "merge issue3"
+8. Rebase branch
+    git reset --hard HEAD~: remove previous merge
+    switch to branch issue3 (branch to be rebased):
+    => git rebase master
+    when conflict appears:
+    choose what to keep
+    => after fixing
+    => git add myfile.txt
+    => git rebase --continue
+
+===> Two ways to merge when histories are parallel:
+    Method 1: ====> merge directly into master
+        while on master
+
+        git merge issue3 => error
+        git add myfile.txt
+        git commit -m "..."
+    Method 2: ==> turn parallel history into linear
+        while on issue3 (branch to merge later)
+
+        git rebase master => error
+        git add myfile.txt
+        git rebase --continue

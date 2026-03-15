@@ -1,0 +1,23 @@
+1. Pulling
+ - When pulling we get history from remote down to local 
+ Case 1: local has no new changes, so pull (get and merge) is a pure fast-forward
+        local: ------(A)------(B)
+        remote: -----(A)------(B)---------(X)---------(Y)
+        after pull from remote to local:
+            => local: -----(A)------(B)---------(X)---------(Y)
+ Case 2: local has changed 
+        local: -----(A)------(B)---------(H)---------(H)
+        remote: -----(A)------(B)---------(X)---------(Y)
+        -> conflict between local and remote histories 
+        so after conflict we must manually resolve, add and commit again  
+2. Fetching
+ - pull automatically does a merge after fetching
+ - But sometimes we only want to see differences, not merge yet
+    => use fetch: only get the latest history
+    syntax: git fetch origin: creates an anonymous remote-tracking ref: default is "FETCH_HEAD"
+    after comparing:
+        -> if we want to integrate: git merge FETCH_HEAD or run git pull again
+ => git pull = git fetch + git merge
+3. Pushing
+ - when pushing from local to remote, the branch to push should be fast-forward
+   relative to remote. Otherwise push will fail and we must update first.

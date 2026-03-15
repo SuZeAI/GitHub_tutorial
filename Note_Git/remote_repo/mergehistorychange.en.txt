@@ -1,0 +1,3 @@
+Merge change history
+1.
+(placeholder: add detailed examples of merging histories here)
